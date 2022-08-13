@@ -1,0 +1,14 @@
+{
+  "name": "api",
+  "version": "1.0.0",
+  "description": "Basic API make in Explorer course",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Wender Barbosa",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.1"
+  }
+}
