@@ -64,6 +64,11 @@ or
 <pre>
 yarn  start
 </pre>
+
+Open your browser and search for :
+<pre>
+localhost:333
+</pre>
 ### Requirements
 
 - [Node.js](https://nodejs.org/en/)
