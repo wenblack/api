@@ -102,7 +102,7 @@ $ gh repo fork wenblack/api
 
 ```bash
 # Clone your fork
-$ git clone your-fork-url && cd api
+$ git clone  https://github.com/wenblack/api && cd api
 
 # Create a branch with your feature
 $ git checkout -b my-feature
