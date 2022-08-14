@@ -2,8 +2,7 @@ const { request, response } = require("express");
 const express  = require ("express");
 
 const app = express();
-/*for receive a request use :
-Example:                                                                */
+/* Request Example:                                                                
 app.get("/:id/:user", (request,response)=>{
   
   const {id , user } = request.params
@@ -13,16 +12,15 @@ app.get("/:id/:user", (request,response)=>{
   For the User: ${user}
   `
   )
-});
-//Root route
+});*/
+/*Root route
 app.get("/", (request,response)=>{
   response.send('Hello World')
-});
+});*/
 //Query params 
-app.get("/users", (request,response)=>{
-  const {page, limit} = request.query
+app.post ("/users", (request,response)=>{
 
-  response.send(`Pages: ${page}. Users: ${limit}`)
+  response.send(`You made a POST`)
 })
 
 //port to listen
