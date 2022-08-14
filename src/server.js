@@ -10,7 +10,7 @@ app.get("/:id/:user", (request,response)=>{
   
   response.send(`
   Message: ${id}
-  For the user: ${user}
+  For the User: ${user}
   `
   )
 });
@@ -22,7 +22,7 @@ app.get("/", (request,response)=>{
 app.get("/users", (request,response)=>{
   const {page, limit} = request.query
 
-  response.send(`Page: ${page}. Users: ${limit}`)
+  response.send(`Pages: ${page}. Users: ${limit}`)
 })
 
 //port to listen
