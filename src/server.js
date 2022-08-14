@@ -1,3 +1,4 @@
+const { request, response } = require("express");
 const express  = require ("express");
 
 const app = express();
@@ -17,6 +18,13 @@ app.get("/:id/:user", (request,response)=>{
 app.get("/", (request,response)=>{
   response.send('Hello World')
 });
+//Query params 
+app.get("/users", (request,response)=>{
+  const {page, limit} = request.query
+
+  response.send(`Page: ${page}. Users: ${limit}`)
+})
+
 //port to listen
 const PORT = 333;
 
