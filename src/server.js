@@ -1,5 +1,6 @@
 //Import Async Errors
 require("express-async-errors");
+const database = require('./database/sqlite')
 const AppError = require("./utils/AppError");
 //import Express
 const express = require("express");
@@ -9,6 +10,7 @@ const routes = require("./routes");
 const app = express();
 app.use(express.json());
 app.use(routes);
+database();
 app.use((error, request, response, next)=>{
   if( error instanceof AppError){
     return response.status(error.statusCode).json({
@@ -23,21 +25,7 @@ app.use((error, request, response, next)=>{
     message: 'Internal Server Error',
   })
 })
-/* Request Example:                                                                
-app.get("/:id/:user", (request,response)=>{
-  
-  const {id , user } = request.params
-  
-  response.send(`
-  Message: ${id}
-  For the User: ${user}
-  `
-  )
-});*/
-/*Root route
-app.get("/", (request,response)=>{
-  response.send('Hello World')
-});*/
+
 
 //port to listen
 const PORT = 333;
