@@ -1,7 +1,7 @@
 const {hash, compare} = require (`bcryptjs`)
 const AppError = require ("../utils/AppError")
 //Crud of Users class
-const sqliteConnection = require("../database/sqlite")
+const sqliteConnection = require("../database/sqlite");
 class UsersController {
   async create(request, response) {
     //Get infos of body
@@ -39,9 +39,9 @@ class UsersController {
     if( userWithUpdatedEmail && userWithUpdatedEmail.id !== user.id) {
       throw new AppError(`Email in use`)
     }
-    //Update User
-    user.name = name
-    user.email = email
+    //Update User 
+    user.name = name ?? user.name //keeping the same if not informed
+    user.email = email ?? user.email //keeping the same if not informed
     //Check blank old Password
     if (password && !old_password) {
       throw new AppError (`Please send the old password`)
