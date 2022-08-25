@@ -19,5 +19,7 @@ function myFirsMiddleware(result, response, next) {
 const usersController = new UsersController();
 //Query params 
 userRoutes.post("/", usersController.create);
+userRoutes.put("/:id", usersController.update);
+
 
 module.exports = userRoutes;
