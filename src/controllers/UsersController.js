@@ -1,4 +1,4 @@
-const {hash} = require (`bcryptjs`)
+const {hash, compare} = require (`bcryptjs`)
 const AppError = require ("../utils/AppError")
 //Crud of Users class
 const sqliteConnection = require("../database/sqlite")
@@ -23,7 +23,7 @@ class UsersController {
 
   async update(request, response) {
     //get info of body of request 
-    const {name,email} = request.body
+    const {name,email, password, old_password} = request.body
     const {id} = request.params
     const database = await sqliteConnection()
     //Searching user in database
@@ -40,17 +40,31 @@ class UsersController {
       throw new AppError(`Email in use`)
     }
     //Update User
-    user.name = name;
-    user.email = email;
-
+    user.name = name
+    user.email = email
+    //Check blank old Password
+    if (password && !old_password) {
+      throw new AppError (`Please send the old password`)
+    }
+    //Compare the passwords
+    if (password && !old_password) {
+      const checkOldPassword = await compare(old_password, password)
+      if(!checkOldPassword){
+        throw new AppError (`Passwords don't matching.`)
+      }
+      //update password value
+      user.password = await hash(password,8) 
+    }
     
+    //Sending to Database
     await database.run(`
       UPDATE users SET
       name = ?,
       email = ?,
-      updated_at = ?
+      updated_at = DATETIME('now'),
+      password = ?
       WHERE id = ?`,
-      [user.name, user.email, new Date(), id]
+      [user.name, user.email, user.password, id]
     )
 
     return response.json()
