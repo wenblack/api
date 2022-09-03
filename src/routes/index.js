@@ -10,4 +10,5 @@ const routes = Router();
 routes.use("/users", userRouter);
 routes.use("/notes", notesRoutes);
 
+
 module.exports = routes;
