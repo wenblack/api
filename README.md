@@ -37,10 +37,13 @@
   <a href="#-license">License</a>
 </p>
 
-<p id="insomniaButton" align="center">
-  <a href="" target="_blank"><img src="https://insomnia.rest/images/run.svg" alt="Run in Insomnia"></a>
-</p>
+<p align="center">
 
+  <a href="https://insomnia.rest/run/?label=Rocket%20Notes%20API&uri=https%3A%2F%2Fgithub.com%2Fwenblack%2Fapi%2Fblob%2Fmain%2Fsrc%2Futils%2FInsomnia.json" target="_blank">
+    <img src="https://insomnia.rest/images/run.svg" alt="Run in Insomnia">
+  </a>
+
+</p>
 ## 👨🏻‍💻 About the project
 
 This is the a basic Api made in explorer course of RocketSeat school.
@@ -51,24 +54,21 @@ Technologies that I used to develop this api
 
 - [Node.js](https://nodejs.org/en/)
 - [Express](https://expressjs.com/pt-br/)
-
+- [Knex.js](https://knexjs.org/)
+- [Sqlite 3](https://www.sqlite.org/)
 
 ## 💻 Getting started
 
 Make a clone of this project or download and run this command:
 
 <pre>
-npm start
+npm run dev
 </pre>
 or 
 <pre>
-yarn  start
+yarn dev
 </pre>
 
-Open your browser and search for :
-<pre>
-localhost:333
-</pre>
 ### Requirements
 
 - [Node.js](https://nodejs.org/en/)
@@ -87,9 +87,10 @@ $ git clone https://github.com/wenblack/api && cd api
 ```bash
 # Install the dependencies
 $ yarn
+$ yarn migrate
 
 # Run the API
-$ yarn  start
+$ yarn  dev
 ```
 
 ## 🤔 How to contribute
