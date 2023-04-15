@@ -1,15 +1,15 @@
-const sqliteconnection = require("../../sqlite");
+const sqliteConection = require('../../sqlite');
 
-const createUsers = require("./createUsers")
+const createUsers = require('./createUsers');
 
 async function migrationsRun() {
-  const schemas = [
-    createUsers
-  ].join('');
+    const schemas = [
+        createUsers
+    ].join('');
 
-  sqliteconnection()
-    .then(deb => deb.exec(schemas))
-    .catch(error => console.error(error));
+    sqliteConection()
+    .then(db => db.exec(schemas))
+    .catch(error => console.log(error));
 }
 
-module.exports = migrationsRun
+module.exports = migrationsRun;

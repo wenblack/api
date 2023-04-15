@@ -1,15 +1,17 @@
-const { Router, request } = require("express");
+const { Router } = require("express");
 
 const NotesController = require("../controllers/NotesController");
+const ensureAuthenticated = require("../middleware/ensureAuthenticated");
 
-const notesRoutes = Router();
-
+const noutesRoutes = Router();
 
 const notesController = new NotesController();
-//Query params 
-notesRoutes.get("/", notesController.index);
-notesRoutes.post("/:user_id", notesController.create);
-notesRoutes.get("/:id", notesController.show);
-notesRoutes.delete("/:id", notesController.delete);
 
-module.exports = notesRoutes;
+noutesRoutes.use(ensureAuthenticated);
+
+noutesRoutes.get("/", notesController.index);
+noutesRoutes.post("/", notesController.create);
+noutesRoutes.get("/:id", notesController.show);
+noutesRoutes.delete("/:id", notesController.delete);
+
+module.exports = noutesRoutes;

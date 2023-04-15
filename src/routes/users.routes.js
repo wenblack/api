@@ -1,25 +1,19 @@
-const { Router, request } = require("express");
+const { Router } = require("express");
+const multer = require("multer");
+const uploadConfig = require("../configs/upload");
 
 const UsersController = require("../controllers/UsersController");
+const UserAvatarController = require("../controllers/UserAvatarController");
+const ensureAuthenticated = require("../middleware/ensureAuthenticated");
 
-const userRoutes = Router();
-/*Middleware Example
-function myFirsMiddleware(result, response, next) {
-  console.log("This is the return of middleware!");
-
-  if(!request.body.isAdmin){
-    return response.json({ message: "User unauthorized"});
-  } 
-  
-  next();
-
-}
-*/
+const usersRoutes = Router();
+const upload = multer(uploadConfig.MULTER);
 
 const usersController = new UsersController();
-//Query params 
-userRoutes.post("/", usersController.create);
-userRoutes.put("/:id", usersController.update);
+const userAvatarController = new UserAvatarController();
 
+usersRoutes.post("/", usersController.create);
+usersRoutes.put("/", ensureAuthenticated, usersController.update);
+usersRoutes.patch("/avatar", ensureAuthenticated, upload.single("avatar"), userAvatarController.update);
 
-module.exports = userRoutes;
+module.exports = usersRoutes;
